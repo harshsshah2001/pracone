@@ -26,6 +26,14 @@ class RegisterService
         return $this->registerRepository->create($request);
     }
 
+    public function editData($id){
+        return $this->registerRepository->editData($id);
+    }
+
+    public function updateData($request,$id){
+       return $this->registerRepository->updateData($id, $request);
+    }
+
     public function deleteData($id){
         return $this->registerRepository->deleteData($id);
     }

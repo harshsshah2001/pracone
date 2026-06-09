@@ -19,4 +19,6 @@ Route::controller(RegisterController::class)->group(function(){
     Route::get('/register','showRegistrationForm');
     Route::post('/register','registerData')->name('register.store');
     Route::delete('/register/{id}','deleteData')->name('register.delete');
+    Route::get('/register/{id}/edit','editData')->name('register.edit');
+    Route::put('/register/{id}','updateData')->name('register.update');
 });

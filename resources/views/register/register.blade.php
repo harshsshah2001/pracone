@@ -102,8 +102,8 @@
                     <td>{{ $data->email }}</td>
                     <td>{{ $data->phone }}</td>
                     <td>
-                    <img src="{{ asset('storage/'.$data->image) }}" width="80">    
-                    </td>                  
+                    <img src="{{ asset('storage/'.$data->image) }}" width="80">
+                    </td>
 
                     <td>
                         @foreach ($data->images as $image)
@@ -111,7 +111,10 @@
                         @endforeach
                     </td>
                     <td>
-                        <a href="{{ route('register.edit', $data->id) }}">Edit</a>
+                         <form action="{{ route('register.edit',$data->id) }}" method="GET">
+                            @csrf
+                            <button type="submit">Edit</button>
+                        </form>
                         <form action="{{ route('register.delete', $data->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
