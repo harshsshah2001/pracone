@@ -28,9 +28,9 @@ class RegisterRequest extends FormRequest
             'password' => 'required|min:6',
             'phone' => 'required|digits:10',
             'multiimage' => 'required|array',
-            
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:5120',
-            'multiimage.*' => 'image|mimes:jpg,jpeg,png|max:5120',
+
+            'image' => 'required|image|mimes:jpg,jpeg,png',
+            'multiimage.*' => 'image|mimes:jpg,jpeg,png',
         ];
     }
 

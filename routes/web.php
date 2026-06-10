@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,4 +28,8 @@ Route::controller(RegisterController::class)->group(function(){
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login','showLoginform');
     Route::post('/login','LoginData')->name('login.check');
+});
+
+Route::controller(DashboardController::class)->group(function(){
+    Route::get('/dashboard','index')->name('user.dashboard');
 });
