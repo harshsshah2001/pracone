@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,11 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/login', 'LoginData')->name('login.check');
     Route::delete('/logout', 'logout')->name('logout');
 
+});
+
+Route::controller(AdminController::class)->group(function(){
+    Route::get('/admin/login','showAdminLoginForm');
+    Route::post('/admin/login','AdminLoginData')->name('admin.login.post');
 });
 
 Route::controller(DashboardController::class)->group(function () {
