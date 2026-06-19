@@ -36,6 +36,9 @@ class RegisterRepository{
 
     public function deleteData($id){
        $id = Register::findOrFail($id);
+        if($id->image){
+            Storage::disk('public')->delete($id->image);
+        }
        $id->delete();
        return $id;
     }
@@ -87,10 +90,6 @@ class RegisterRepository{
     public function logout($request){
         $user= Auth::guard('register')->user();
         if($user){
-            Storage::disk('public')->delete($user->image);
-            foreach($user->images as $image){
-                Storage::disk('public')->delete($image->image);
-            }
             Auth::guard('register')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
