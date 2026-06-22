@@ -36,8 +36,10 @@ Route::controller(LoginController::class)->group(function () {
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/login','showAdminLoginForm');
     Route::post('/admin/login','AdminLoginData')->name('admin.login.post');
+    Route::get('/admin/dashboard','showAdminDashboard')->name('admin.dashboard');
 });
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('user.dashboard');
 });
+

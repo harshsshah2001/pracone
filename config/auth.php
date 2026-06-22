@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\Register;
+use App\Models\Admin;
 
 return [
 
@@ -47,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'registers',
         ],
+        'admin'=>[
+            'driver'=>'session',
+            'provider'=>'admin',
+        ]
     ],
 
     /*
@@ -75,6 +80,10 @@ return [
             'driver' => 'eloquent',
             'model' => Register::class,
         ],
+        'admin'=>[
+            'driver'=>'eloquent',
+            'model'=>Admin::class,
+        ]
 
 
         // 'users' => [

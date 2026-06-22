@@ -27,7 +27,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::guard('register')->attempt($request->only('email', 'password'))) {
+        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
             return redirect()->route('user.dashboard')->with('success', 'Login successful!');
         }

@@ -11,6 +11,11 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
+    public function showAdminDashboard()
+    {
+        return view('admin.dashboard');
+    }
+
     public function AdminLoginData(Request $request){
         $credentials = $request->only('email', 'password');
 
