@@ -37,6 +37,10 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/login','showAdminLoginForm');
     Route::post('/admin/login','AdminLoginData')->name('admin.login.post');
     Route::get('/admin/dashboard','showAdminDashboard')->name('admin.dashboard');
+    Route::get('/admin/forgot/password','showForgotPasswordForm')->name('admin.forgot.password');
+    Route::post('/admin/forgot/password','AdminForgotPasswordData')->name('admin.forgot.password.post');
+    Route::get('/admin/change/password','AdminChangePasswordform')->name('admin.change.password.form');
+    Route::post('/admin/change/password','AdminChangePasswordData')->name('admin.change.password');
 });
 
 Route::controller(DashboardController::class)->group(function () {
