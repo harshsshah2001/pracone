@@ -26,12 +26,12 @@ Route::controller(RegisterController::class)->group(function () {
     Route::put('/register/{id}', 'updateData')->name('register.update');
 });
 
-Route::controller(LoginController::class)->group(function () {
-    Route::get('/login', 'showLoginform');
-    Route::post('/login', 'LoginData')->name('login.check');
-    Route::delete('/logout', 'logout')->name('logout');
+// Route::controller(LoginController::class)->group(function () {
+//     Route::get('/login', 'showLoginform');
+//     Route::post('/login', 'LoginData')->name('login.check');
+//     Route::delete('/logout', 'logout')->name('logout');
 
-});
+// });
 
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/login','showAdminLoginForm');
