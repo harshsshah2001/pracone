@@ -7,34 +7,49 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Register;
 // use App\Repository\RegisterRepository;
+
 use App\Services\RegisterService;
 
 class LoginController extends Controller
 {
-    
+
     public function showLoginform()
     {
         return view('login.login');
     }
 
-    public function LoginData(Request $request)
+    public function apiLogin(Request $request)
     {
         $request->validate([
+
             'email' => 'required|email',
+
             'password' => 'required',
         ]);
+        if (!Auth::guard('admin')->attempt($request->only('email', 'password'))) {
 
-        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-            $request->session()->regenerate();
-            return redirect()->route('user.dashboard')->with('success', 'Login successful!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid credentials'
+            ], 401);
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        $admin = Auth::guard('admin')->user();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Login successful',
+            'data' => $admin
+        ], 200);
     }
+
     public function logout(Request $request)
     {
-        return $this->registerService->logout($request);
+        Auth::guard('admin')->logout();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Logout successful'
+        ], 200);
     }
 }

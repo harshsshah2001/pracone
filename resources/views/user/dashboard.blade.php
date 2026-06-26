@@ -15,10 +15,10 @@
 
     <h1>Welcome to the Dashboard!</h1>
     <p>You are logged in.</p>
-    <form action="{{ route('logout') }}" method="POST">
+    {{-- <form action="{{ route('logout') }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Logout</button>
-    </form>
+    </form> --}}
 </body>
 </html>

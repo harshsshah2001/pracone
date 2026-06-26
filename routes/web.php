@@ -27,7 +27,6 @@ Route::controller(RegisterController::class)->group(function () {
 });
 
 
-
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/login','showAdminLoginForm');
     Route::post('/admin/login','AdminLoginData')->name('admin.login.post');
