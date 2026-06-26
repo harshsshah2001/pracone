@@ -21,23 +21,34 @@ class AuthController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    { {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
 
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+            if (!Auth::guard('admin')->attempt($request->only('email', 'password'))) {
 
-        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-            $request->session()->regenerate();
-            return redirect()->route('user.dashboard')->with('success', 'Login successful!');
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid Credentials'
+                ], 401);
+            }
+
+            /** @var Register $admin */
+            $admin = Auth::guard('admin')->user();
+
+            $token = $admin->createToken('Admin Token')->plainTextToken;
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Login Successful',
+                'token' => $token,
+                'admin' => $admin
+            ]);
         }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-
     }
+
 
     /**
      * Display the specified resource.
