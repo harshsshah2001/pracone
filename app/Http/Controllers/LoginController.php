@@ -11,10 +11,7 @@ use App\Services\RegisterService;
 
 class LoginController extends Controller
 {
-    protected $registerService;
-    public function __construct(RegisterService $registerService){
-        $this->registerService = $registerService;
-    }
+    
     public function showLoginform()
     {
         return view('login.login');
