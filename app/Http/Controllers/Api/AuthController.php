@@ -21,32 +21,31 @@ class AuthController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { {
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-            ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-            if (!Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Invalid Credentials'
-                ], 401);
-            }
-
-            /** @var Register $admin */
-            $admin = Auth::guard('admin')->user();
-
-            $token = $admin->createToken('Admin Token')->plainTextToken;
+        if (!Auth::guard('admin')->attempt($request->only('email', 'password'))) {
 
             return response()->json([
-                'status' => true,
-                'message' => 'Login Successful',
-                'token' => $token,
-                'admin' => $admin
-            ]);
+                'status' => false,
+                'message' => 'Invalid Credentials'
+            ], 401);
         }
+
+        /** @var Register $admin */
+        $admin = Auth::guard('admin')->user();
+
+        $token = $admin->createToken('Admin Token')->plainTextToken;
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Login Successful',
+            'token' => $token,
+            'admin' => $admin
+        ]);
     }
 
 
@@ -75,6 +74,15 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        // return $this->registerService->logout($request);
+        $user = $request->user();
+        $token = $user->currentAccessToken();
+        $user->currentAccessToken()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Logout Successful',
+            'id' => $user->id,
+            'token' => $token
+        ]);
     }
 }
