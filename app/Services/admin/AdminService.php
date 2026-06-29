@@ -9,10 +9,7 @@ class AdminService
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    
 
         if (!Auth::guard('admin')->attempt($request->only('email', 'password'))) {
 

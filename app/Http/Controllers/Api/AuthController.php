@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use AdminService;
+use App\Services\admin\AdminService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\Admin\AdminRequest;
 
 class AuthController extends Controller
 {
