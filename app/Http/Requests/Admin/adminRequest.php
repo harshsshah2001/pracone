@@ -20,7 +20,7 @@ class AdminRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'email'=>'required|email',
@@ -28,7 +28,7 @@ class AdminRequest extends FormRequest
         ];
 
     }
-     public function messages(): array{
+     public function messages(){
         return [
             'email.required'=>'Email is Required',
              'email.email' => 'Please enter a valid email address',

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +9,7 @@ class AdminService
 {
     public function store(Request $request)
     {
-    
+
 
         if (!Auth::guard('admin')->attempt($request->only('email', 'password'))) {
 
