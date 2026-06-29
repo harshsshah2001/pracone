@@ -21,7 +21,7 @@ class AuthController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { {
+    { 
             $request->validate([
                 'email' => 'required|email',
                 'password' => 'required',
@@ -46,7 +46,7 @@ class AuthController extends Controller
                 'token' => $token,
                 'admin' => $admin
             ]);
-        }
+
     }
 
 
