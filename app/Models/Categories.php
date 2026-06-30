@@ -13,6 +13,8 @@ class Categories extends Model
         'slug',
         'image',
         'status',
+        'created_at',
+        'updated_at'
     ];
 
 }

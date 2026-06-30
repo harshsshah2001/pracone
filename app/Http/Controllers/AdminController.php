@@ -19,12 +19,10 @@ class AdminController extends Controller
         $this->adminService = $adminService;
     }
 
-
-
-
     public function showAdminHome(Request $request)
     {
         $admin = $request->user();
+
         return response()->json([
             'status' => TRUE,
             'message' => 'Admin Home',
