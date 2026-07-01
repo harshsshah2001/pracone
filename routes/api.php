@@ -15,7 +15,7 @@ Route::middleware('auth:sanctum')->delete('admin/logout',[AuthController::class,
 Route::middleware('auth:sanctum')->prefix('admin')->controller(AdminController::class)->group(function () {
 
     Route::get('/dashboard','showAdminHome');
-    Route::get('/categories','addCategories');
+    
 
 });
 

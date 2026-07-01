@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function store(){
-        
+    public function __construct(CategoryService $categoryService){
+        $this->categoryService = $categoryService;
+    }
+    public function store(Request $request){
+        return $this->categoryService->store($request);
     }
 }
