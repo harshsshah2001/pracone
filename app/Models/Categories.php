@@ -17,4 +17,7 @@ class Categories extends Model
         'updated_at'
     ];
 
+    public function SubCategories(){
+        return $this->hasMany(SubCategories::class,'category_id');
+    }
 }
