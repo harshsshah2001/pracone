@@ -20,13 +20,24 @@ class CategoryRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'name'=>'required|string|max:255',
             'slug'=>'required|string|max:500|unique:categories,slug',
-            'image'=>'required|image|mimes:png,jpg,jpeg,gif',
-            ''
+            'image'=>'nullable|image|mimes:png,jpg,jpeg,gif',
+            'status'=>'required',
+            'created_at'=>'nullable|date',
+            'updated_at'=>'nullable|date',
+
+        ];
+    }
+
+    public function message(){
+        return [
+            'name.required'=>'Name is required',
+            'slug.required'=>'Slug is required',
+            'status.required'=>'Status is required',
 
         ];
     }

@@ -15,10 +15,16 @@ Route::middleware('auth:sanctum')->delete('admin/logout',[AuthController::class,
 Route::middleware('auth:sanctum')->prefix('admin')->controller(AdminController::class)->group(function () {
 
     Route::get('/dashboard','showAdminHome');
-    
+
 
 });
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function(){
         Route::post('/categories',[CategoryController::class,'store']);
+});
+
+Route::get('/test', function () {
+    return response()->json([
+        'message' => 'API Working'
+    ]);
 });

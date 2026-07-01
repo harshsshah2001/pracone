@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('image');
+            $table->string('image'); //change a datatype from notnull to nullable.
             $table->tinyInteger('status');  //change a datatype from tinyINteger to string.
             $table->timestamps();
         });
