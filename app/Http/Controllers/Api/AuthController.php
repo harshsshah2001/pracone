@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Services\admin\AdminService;
+use App\Services\Admin\AdminService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +11,8 @@ use App\Http\Requests\Admin\AdminRequest;
 class AuthController extends Controller
 {
     protected $adminService;
-    public function __construct(AdminService $adminService){
+    public function __construct(AdminService $adminService)
+    {
 
         $this->adminService = $adminService;
     }
